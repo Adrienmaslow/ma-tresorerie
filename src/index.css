@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 10 11 13;
+  --surface: 19 21 25;
+  --raised: 27 30 35;
+  --line: 38 42 48;
+  --ink: 236 238 241;
+  --muted: 136 143 153;
+  --accent: 62 224 160;
+  --pos: 52 211 153;
+  --neg: 248 113 113;
+  --warn: 251 191 36;
+  --info: 96 165 250;
+  /* Séries de graphiques (palette validée, mode sombre) */
+  --s1: #3987e5;
+  --s2: #d95926;
+  --s3: #199e70;
+  --s4: #c98500;
+  --s5: #d55181;
+  --s6: #008300;
+  --s7: #9085e9;
+  --s8: #e66767;
+  --grid: rgba(255, 255, 255, 0.06);
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: 244 245 247;
+  --surface: 255 255 255;
+  --raised: 240 242 245;
+  --line: 226 229 234;
+  --ink: 17 19 23;
+  --muted: 100 107 118;
+  --accent: 13 148 103;
+  --pos: 5 150 105;
+  --neg: 220 38 38;
+  --warn: 180 120 0;
+  --info: 37 99 235;
+  --s1: #2a78d6;
+  --s2: #eb6834;
+  --s3: #1baf7a;
+  --s4: #eda100;
+  --s5: #e87ba4;
+  --s6: #008300;
+  --s7: #6250d6;
+  --s8: #e34948;
+  --grid: rgba(0, 0, 0, 0.06);
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-bg text-ink font-sans antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+  font-feature-settings: 'tnum' 1, 'cv11' 1;
+}
+
+/* Évite le zoom automatique d'iOS sur les champs (taille ≥ 16px) */
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.pb-nav {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 6.5rem);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl bg-surface border border-line/70;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 h-11 text-[15px] font-medium transition active:scale-[.98] disabled:opacity-40 disabled:pointer-events-none select-none;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-[#04150e] hover:brightness-110;
+  }
+  .btn-secondary {
+    @apply btn bg-raised text-ink hover:bg-line;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-muted hover:text-ink hover:bg-raised;
+  }
+  .btn-danger {
+    @apply btn bg-neg/15 text-neg hover:bg-neg/25;
+  }
+  .icon-btn {
+    @apply inline-flex items-center justify-center h-10 w-10 rounded-xl text-muted hover:text-ink hover:bg-raised transition active:scale-95;
+  }
+  .input {
+    @apply w-full h-12 rounded-xl bg-raised border border-line px-3.5 text-ink placeholder:text-muted/70 outline-none focus:border-accent/70 focus:ring-2 focus:ring-accent/20 transition;
+  }
+  .label {
+    @apply block text-[13px] font-medium text-muted mb-1.5;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full text-[14px] font-medium border border-line bg-surface text-muted whitespace-nowrap transition;
+  }
+  .chip-on {
+    @apply bg-ink text-bg border-ink;
+  }
+}
+
+/* Recharts : texte des axes */
+.recharts-cartesian-axis-tick-value {
+  fill: rgb(var(--muted));
+  font-size: 11px;
+}
+.recharts-surface:focus,
+.recharts-wrapper:focus,
+.recharts-sector:focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
