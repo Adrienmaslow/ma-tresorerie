@@ -15,7 +15,7 @@ for (const [file, size] of out) {
 }
 // Version "maskable" : motif réduit à 80 % dans la zone de sécurité
 const inner = await sharp(svg, { density: 384 }).resize(410, 410).png().toBuffer();
-await sharp({ create: { width: 512, height: 512, channels: 4, background: '#0b1110' } })
+await sharp({ create: { width: 512, height: 512, channels: 4, background: "#000000" } })
   .composite([{ input: inner, gravity: 'center' }])
   .png()
   .toFile('public/icons/icon-maskable-512.png');

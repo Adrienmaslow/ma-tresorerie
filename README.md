@@ -1,4 +1,4 @@
-# Ma Trésorerie — PWA de gestion de trésorerie personnelle
+# Solde — PWA de gestion de trésorerie personnelle
 
 Application web progressive (React + TypeScript + Tailwind CSS + Vite + vite-plugin-pwa) installable sur iPhone, Android, Mac et PC. Les données sont stockées localement dans IndexedDB, l'application fonctionne hors ligne, et une synchronisation entre appareils via Supabase peut être activée.
 

@@ -3,19 +3,21 @@
 @tailwind utilities;
 
 :root {
-  --bg: 10 11 13;
-  --surface: 19 21 25;
-  --raised: 27 30 35;
-  --line: 38 42 48;
-  --ink: 236 238 241;
-  --muted: 136 143 153;
-  --accent: 62 224 160;
-  --pos: 52 211 153;
-  --neg: 248 113 113;
-  --warn: 251 191 36;
-  --info: 96 165 250;
+  /* Nuit : noir pur (écrans OLED) et bleu glacier */
+  --bg: 0 0 0;
+  --surface: 16 18 23;
+  --raised: 26 29 36;
+  --line: 34 38 46;
+  --ink: 238 241 246;
+  --muted: 136 145 161;
+  --accent: 157 188 242;
+  --on-accent: 6 14 30;
+  --pos: 108 207 164;
+  --neg: 240 128 128;
+  --warn: 230 186 110;
+  --info: 157 188 242;
   /* Séries de graphiques (palette validée, mode sombre) */
-  --s1: #3987e5;
+  --s1: #6f9ff0;
   --s2: #d95926;
   --s3: #199e70;
   --s4: #c98500;
@@ -28,17 +30,18 @@
 }
 
 :root[data-theme='light'] {
-  --bg: 244 245 247;
+  --bg: 242 243 246;
   --surface: 255 255 255;
-  --raised: 240 242 245;
-  --line: 226 229 234;
-  --ink: 17 19 23;
-  --muted: 100 107 118;
-  --accent: 13 148 103;
-  --pos: 5 150 105;
-  --neg: 220 38 38;
-  --warn: 180 120 0;
-  --info: 37 99 235;
+  --raised: 236 238 243;
+  --line: 224 227 233;
+  --ink: 14 17 23;
+  --muted: 96 104 119;
+  --accent: 44 74 133;
+  --on-accent: 255 255 255;
+  --pos: 22 128 88;
+  --neg: 196 58 62;
+  --warn: 160 106 18;
+  --info: 44 74 133;
   --s1: #2a78d6;
   --s2: #eb6834;
   --s3: #1baf7a;
@@ -71,6 +74,12 @@ textarea {
   font-size: 16px;
 }
 
+.font-display {
+  /* SF Pro Rounded sur iPhone et Mac */
+  font-family: ui-rounded, 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
 .tnum {
   font-variant-numeric: tabular-nums;
 }
@@ -94,28 +103,28 @@ textarea {
 
 @layer components {
   .card {
-    @apply rounded-2xl bg-surface border border-line/70;
+    @apply rounded-[22px] bg-surface border border-line/60;
   }
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 h-11 text-[15px] font-medium transition active:scale-[.98] disabled:opacity-40 disabled:pointer-events-none select-none;
   }
   .btn-primary {
-    @apply btn bg-accent text-[#04150e] hover:brightness-110;
+    @apply btn bg-accent text-[rgb(var(--on-accent))] hover:brightness-110 rounded-full;
   }
   .btn-secondary {
-    @apply btn bg-raised text-ink hover:bg-line;
+    @apply btn bg-raised text-ink hover:bg-line rounded-full;
   }
   .btn-ghost {
     @apply btn bg-transparent text-muted hover:text-ink hover:bg-raised;
   }
   .btn-danger {
-    @apply btn bg-neg/15 text-neg hover:bg-neg/25;
+    @apply btn bg-neg/15 text-neg hover:bg-neg/25 rounded-full;
   }
   .icon-btn {
     @apply inline-flex items-center justify-center h-10 w-10 rounded-xl text-muted hover:text-ink hover:bg-raised transition active:scale-95;
   }
   .input {
-    @apply w-full h-12 rounded-xl bg-raised border border-line px-3.5 text-ink placeholder:text-muted/70 outline-none focus:border-accent/70 focus:ring-2 focus:ring-accent/20 transition;
+    @apply w-full h-12 rounded-2xl bg-raised border border-transparent px-4 text-ink placeholder:text-muted/70 outline-none focus:border-accent/70 focus:ring-2 focus:ring-accent/20 transition;
   }
   .label {
     @apply block text-[13px] font-medium text-muted mb-1.5;

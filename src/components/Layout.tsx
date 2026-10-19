@@ -44,7 +44,7 @@ export function Layout({ children, onLock }: { children: ReactNode; onLock?: () 
       <aside className="hidden md:flex md:flex-col w-64 shrink-0 border-r border-line/70 h-screen sticky top-0 p-4">
         <div className="flex items-center gap-2.5 px-2 py-2 mb-6">
           <Logo />
-          <span className="font-semibold text-[17px] tracking-tight">Ma Trésorerie</span>
+          <span className="font-display text-[20px] font-bold">Solde</span>
         </div>
         <nav className="space-y-0.5">
           {MAIN.map((n) => (
@@ -83,7 +83,7 @@ export function Layout({ children, onLock }: { children: ReactNode; onLock?: () 
           <div className="flex items-center h-14 px-4 gap-1">
             <a href={href('home')} className="flex items-center gap-2 mr-auto" aria-label="Accueil">
               <Logo />
-              <span className="font-semibold tracking-tight">Ma Trésorerie</span>
+              <span className="font-display text-[20px] font-bold">Solde</span>
             </a>
             {!online && (
               <span className="text-muted text-[12px] flex items-center gap-1 mr-1">
@@ -112,19 +112,19 @@ export function Layout({ children, onLock }: { children: ReactNode; onLock?: () 
       <button
         type="button"
         onClick={() => openSheet({ kind: 'quick' })}
-        className="md:hidden fixed z-40 right-4 h-14 w-14 rounded-2xl bg-accent text-[#04150e] grid place-items-center shadow-[0_8px_30px_rgba(62,224,160,0.35)] active:scale-95 transition bottom-[calc(env(safe-area-inset-bottom)+5rem)]"
+        className="md:hidden fixed z-40 right-4 h-14 w-14 rounded-full bg-accent text-[rgb(var(--on-accent))] grid place-items-center shadow-[0_10px_30px_rgba(111,159,240,0.35)] active:scale-95 transition bottom-[calc(env(safe-area-inset-bottom)+5rem)]"
         aria-label="Ajouter une opération"
       >
         <Plus size={28} strokeWidth={2.4} />
       </button>
 
       {/* Barre d'onglets (mobile) */}
-      <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-surface/90 backdrop-blur-xl border-t border-line/70 safe-bottom" aria-label="Navigation principale">
+      <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-bg/80 backdrop-blur-2xl border-t border-line/50 safe-bottom" aria-label="Navigation principale">
         <div className="grid grid-cols-5 h-16">
           {MAIN.map((n) => {
             const on = route === n.route;
             return (
-              <a key={n.route} href={href(n.route)} aria-current={on ? 'page' : undefined} className={cx('flex flex-col items-center justify-center gap-1 text-[11px] font-medium transition', on ? 'text-accent' : 'text-muted')}>
+              <a key={n.route} href={href(n.route)} aria-current={on ? 'page' : undefined} className={cx('flex flex-col items-center justify-center gap-1 text-[11px] font-medium transition', on ? 'text-ink' : 'text-muted/80')}>
                 <n.icon size={22} strokeWidth={on ? 2.2 : 1.8} />
                 {n.label}
               </a>

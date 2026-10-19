@@ -22,7 +22,7 @@ function useTheme() {
     const apply = () => {
       const dark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
       document.documentElement.dataset.theme = dark ? 'dark' : 'light';
-      const color = dark ? '#0a0b0d' : '#f4f5f7';
+      const color = dark ? '#000000' : '#f4f5f7';
       document.querySelector('meta[name="theme-color"]')?.setAttribute('content', color);
     };
     apply();

@@ -39,7 +39,7 @@ export function PageHeader({ title, subtitle, actions }: { title: string; subtit
   return (
     <div className="flex items-end justify-between gap-3 mb-5">
       <div className="min-w-0">
-        <h1 className="text-[28px] leading-tight font-semibold tracking-tight">{title}</h1>
+        <h1 className="font-display text-[32px] leading-tight font-bold">{title}</h1>
         {subtitle && <div className="text-muted text-[14px] mt-0.5">{subtitle}</div>}
       </div>
       {actions && <div className="flex items-center gap-2 shrink-0">{actions}</div>}
@@ -50,7 +50,7 @@ export function PageHeader({ title, subtitle, actions }: { title: string; subtit
 export function SectionTitle({ children, action }: { children: ReactNode; action?: ReactNode }) {
   return (
     <div className="flex items-center justify-between mt-7 mb-3">
-      <h2 className="text-[13px] font-semibold uppercase tracking-wider text-muted">{children}</h2>
+      <h2 className="font-display text-[19px] font-semibold text-ink">{children}</h2>
       {action}
     </div>
   );
@@ -65,7 +65,7 @@ export function Badge({ children, tone = 'neutral' }: { children: ReactNode; ton
     info: 'bg-info/10 text-info',
     accent: 'bg-accent/10 text-accent',
   }[tone];
-  return <span className={cx('inline-flex items-center gap-1 h-6 px-2 rounded-md text-[12px] font-medium whitespace-nowrap', t)}>{children}</span>;
+  return <span className={cx('inline-flex items-center gap-1 h-6 px-2 rounded-full text-[12px] font-medium whitespace-nowrap', t)}>{children}</span>;
 }
 
 export function Empty({ icon, title, text, action }: { icon: ReactNode; title: string; text?: string; action?: ReactNode }) {
@@ -156,7 +156,7 @@ export function MoneyInput({ value, onChange, allowNegative, autoFocus, placehol
           last.current = ok;
           onChange(ok);
         }}
-        className={cx('input tnum pr-9', large && 'h-16 text-[28px] font-semibold', invalid && 'border-neg focus:border-neg focus:ring-neg/20')}
+        className={cx('input tnum pr-9', large && 'h-16 text-[30px] font-semibold font-display', invalid && 'border-neg focus:border-neg focus:ring-neg/20')}
         aria-invalid={invalid}
       />
       <span className={cx('absolute right-3.5 top-1/2 -translate-y-1/2 text-muted pointer-events-none', large && 'text-[22px]')}>€</span>
@@ -197,10 +197,10 @@ export function Sheet({ open, onClose, title, children, footer, wide }: { open: 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center" role="dialog" aria-modal="true" aria-label={title}>
       <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] animate-fade-in" onClick={onClose} />
-      <div className={cx('relative w-full bg-surface border border-line md:rounded-2xl rounded-t-[1.5rem] max-h-[92dvh] flex flex-col animate-sheet-in md:animate-rise shadow-2xl', wide ? 'md:max-w-2xl' : 'md:max-w-lg')}>
+      <div className={cx('relative w-full bg-surface border border-line/60 md:rounded-[28px] rounded-t-[28px] max-h-[92dvh] flex flex-col animate-sheet-in md:animate-rise shadow-2xl', wide ? 'md:max-w-2xl' : 'md:max-w-lg')}>
         <div className="md:hidden mx-auto mt-2 h-1.5 w-10 rounded-full bg-line" />
         <div className="flex items-center justify-between px-5 pt-3 md:pt-5 pb-3">
-          <h2 className="text-[19px] font-semibold">{title}</h2>
+          <h2 className="font-display text-[21px] font-bold">{title}</h2>
           <button type="button" className="icon-btn -mr-2" onClick={onClose} aria-label="Fermer">
             <X size={20} />
           </button>
@@ -275,7 +275,7 @@ export function Stat({ label, children, sub }: { label: string; children: ReactN
   return (
     <div className="card p-4 min-w-0">
       <div className="text-muted text-[13px]">{label}</div>
-      <div className="text-[20px] font-semibold mt-1 truncate">{children}</div>
+      <div className="font-display text-[22px] font-semibold mt-1 truncate">{children}</div>
       {sub && <div className="text-muted text-[12px] mt-0.5">{sub}</div>}
     </div>
   );

@@ -34,11 +34,11 @@ function StatCard({ icon, label, value, hint, onClick, tone }: { icon: React.Rea
   return (
     <Card onClick={onClick} className="p-4 flex flex-col gap-3 min-w-0">
       <div className="flex items-center gap-2.5">
-        <span className={cx('h-9 w-9 rounded-xl grid place-items-center shrink-0', tone)}>{icon}</span>
+        <span className={cx('h-9 w-9 rounded-full grid place-items-center shrink-0', tone)}>{icon}</span>
         <span className="text-muted text-[13px] leading-tight">{label}</span>
       </div>
       <div className="min-w-0">
-        <div className="text-[21px] font-semibold tracking-tight truncate">
+        <div className="font-display text-[23px] font-semibold truncate">
           <Amount cents={value} />
         </div>
         {hint && <div className="text-muted text-[12px] mt-0.5 truncate">{hint}</div>}
@@ -88,12 +88,11 @@ export default function Home() {
       <div className="text-muted text-[14px] mb-1">{fmtDateLong(today())}</div>
 
       {/* Trésorerie totale */}
-      <div className="card p-5 md:p-6 relative overflow-hidden">
-        <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-accent/10 blur-3xl pointer-events-none" />
+      <div className="card p-6 md:p-8 relative overflow-hidden">
         <div className="flex items-center gap-2 text-muted text-[14px]">
           <LineChart size={16} /> Trésorerie totale
         </div>
-        <div className="text-[40px] md:text-[48px] font-semibold tracking-tight leading-tight mt-1">
+        <div className="font-display text-[46px] md:text-[56px] font-bold leading-[1.05] mt-2">
           <Amount cents={t.total} />
         </div>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[14px] mt-1">
@@ -132,13 +131,13 @@ export default function Home() {
 
       {/* Cartes */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-3">
-        <StatCard icon={<Wallet size={18} />} tone="bg-[rgb(var(--info)/0.12)] text-info" label="Liquidités disponibles" value={t.liquidity} hint={`${data.accounts.length} compte${data.accounts.length > 1 ? 's' : ''}`} onClick={() => navigate('accounts')} />
-        <StatCard icon={<Clock size={18} />} tone="bg-warn/10 text-warn" label="Argent en attente" value={t.pending} hint={t.loansGiven ? <>dont prêts <Amount cents={t.loansGiven} /></> : t.dispute ? <>dont litiges <Amount cents={t.dispute} /></> : 'À recevoir'} onClick={() => navigate('pending')} />
-        <StatCard icon={<Lock size={18} />} tone="bg-raised text-muted" label="Argent bloqué" value={t.blocked} hint="Temporairement indisponible" onClick={() => navigate('pending', { f: 'blocked' })} />
-        <StatCard icon={<Package size={18} />} tone="bg-accent/10 text-accent" label="Valeur du stock" value={t.stock} hint="Au prix d’achat" onClick={() => navigate('stock')} />
-        <StatCard icon={<Receipt size={18} />} tone="bg-neg/10 text-neg" label="Argent à payer" value={t.toPay} hint={t.overdueCount ? <span className="text-neg">{t.overdueCount} en retard</span> : 'Échéances et dettes'} onClick={() => navigate('obligations')} />
-        <StatCard icon={<TrendingUp size={18} />} tone="bg-info/10 text-info" label="Trésorerie prévisionnelle" value={t.forecast} hint="Liquidités + à recevoir − à payer" onClick={() => navigate('stats')} />
-        <StatCard icon={<Sparkles size={18} />} tone="bg-pos/10 text-pos" label="Bénéfices réalisés" value={t.realizedProfit} hint="Ventes terminées" onClick={() => navigate('stock', { f: 'sold' })} />
+        <StatCard icon={<Wallet size={18} />} tone="bg-raised text-ink/80" label="Liquidités disponibles" value={t.liquidity} hint={`${data.accounts.length} compte${data.accounts.length > 1 ? 's' : ''}`} onClick={() => navigate('accounts')} />
+        <StatCard icon={<Clock size={18} />} tone="bg-raised text-ink/80" label="Argent en attente" value={t.pending} hint={t.loansGiven ? <>dont prêts <Amount cents={t.loansGiven} /></> : t.dispute ? <>dont litiges <Amount cents={t.dispute} /></> : 'À recevoir'} onClick={() => navigate('pending')} />
+        <StatCard icon={<Lock size={18} />} tone="bg-raised text-ink/80" label="Argent bloqué" value={t.blocked} hint="Temporairement indisponible" onClick={() => navigate('pending', { f: 'blocked' })} />
+        <StatCard icon={<Package size={18} />} tone="bg-raised text-ink/80" label="Valeur du stock" value={t.stock} hint="Au prix d’achat" onClick={() => navigate('stock')} />
+        <StatCard icon={<Receipt size={18} />} tone="bg-raised text-ink/80" label="Argent à payer" value={t.toPay} hint={t.overdueCount ? <span className="text-neg">{t.overdueCount} en retard</span> : 'Échéances et dettes'} onClick={() => navigate('obligations')} />
+        <StatCard icon={<TrendingUp size={18} />} tone="bg-raised text-ink/80" label="Trésorerie prévisionnelle" value={t.forecast} hint="Liquidités + à recevoir − à payer" onClick={() => navigate('stats')} />
+        <StatCard icon={<Sparkles size={18} />} tone="bg-raised text-ink/80" label="Bénéfices réalisés" value={t.realizedProfit} hint="Ventes terminées" onClick={() => navigate('stock', { f: 'sold' })} />
         <Card onClick={() => navigate('stats')} className="p-4 flex flex-col justify-between gap-3">
           <span className="h-9 w-9 rounded-xl grid place-items-center bg-raised text-muted">
             <BarChart3 size={18} />

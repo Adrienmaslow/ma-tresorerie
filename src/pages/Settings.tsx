@@ -232,7 +232,7 @@ function DataSection() {
     void navigator.storage?.estimate?.().then((e) => e.usage !== undefined && setUsage(`${(e.usage / 1024).toFixed(0)} Ko utilisés`));
   }, []);
   const stamp = today();
-  const exportAll = () => downloadFile(`ma-tresorerie-${stamp}.json`, exportJSON(getState().raw), 'application/json');
+  const exportAll = () => downloadFile(`solde-${stamp}.json`, exportJSON(getState().raw), 'application/json');
   const onJson = async (f: File) => {
     try {
       const data = parseImportJSON(await f.text());
@@ -432,7 +432,7 @@ function InstallSection() {
         </ol>
       ) : prompt ? (
         <button className="btn-primary" onClick={prompt}>
-          <Download size={18} /> Installer Ma Trésorerie
+          <Download size={18} /> Installer Solde
         </button>
       ) : (
         <p className="text-muted text-[14px]">Utilisez le menu du navigateur : « Installer l’application » (Chrome, Edge) ou « Ajouter au Dock » (Safari sur Mac).</p>
@@ -463,7 +463,7 @@ export default function Settings() {
         <SyncSection />
         <InstallSection />
         <Section icon={<Info size={18} />} title="À propos">
-          <p className="text-muted text-[14px]">Ma Trésorerie v{__APP_VERSION__}. Montants calculés en centimes entiers. Fonctionne hors ligne.</p>
+          <p className="text-muted text-[14px]">Solde v{__APP_VERSION__}. Montants calculés en centimes entiers. Fonctionne hors ligne.</p>
           {needRefresh && (
             <button className="btn-primary mt-3" onClick={update}>
               <RefreshCw size={17} /> Installer la mise à jour

@@ -100,7 +100,7 @@ export function LockScreen({ onUnlock }: { onUnlock: () => void }) {
   return (
     <div className="fixed inset-0 z-[100] bg-bg flex flex-col items-center justify-center px-6 safe-top safe-bottom select-none">
       <img src={`${import.meta.env.BASE_URL}icons/icon-192.png`} alt="" className="h-16 w-16 rounded-[18px] mb-5" />
-      <h1 className="text-[20px] font-semibold">Ma Trésorerie</h1>
+      <h1 className="font-display text-[26px] font-bold">Solde</h1>
       <p className="text-muted text-[14px] mt-1 h-5">{locked ? `Trop d’essais. Réessayez dans ${remaining} s` : fails > 0 ? 'Code incorrect' : 'Saisissez votre code'}</p>
       <div className={cx('flex gap-3 my-8 h-4', error && 'animate-shake')}>
         {Array.from({ length: Math.max(4, pin.length) }).map((_, i) => (
@@ -127,9 +127,9 @@ export function LockScreen({ onUnlock }: { onUnlock: () => void }) {
           <Delete size={26} />
         </button>
       </div>
-      <button type="button" className="btn-primary mt-8 w-full max-w-[290px]" disabled={pin.length < 4 || busy || locked} onClick={() => submit(pin)}>
+      {!settings.pinLength && <button type="button" className="btn-primary mt-8 w-full max-w-[290px]" disabled={pin.length < 4 || busy || locked} onClick={() => submit(pin)}>
         {busy ? 'Vérification…' : 'Déverrouiller'}
-      </button>
+      </button>}
     </div>
   );
 }

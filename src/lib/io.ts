@@ -18,7 +18,7 @@ export function parseImportJSON(text: string): DataState {
     throw new Error('Fichier JSON illisible.');
   }
   const o = obj as { format?: string; data?: Record<string, unknown> };
-  if (o.format !== EXPORT_FORMAT || !o.data) throw new Error('Ce fichier n’est pas une sauvegarde Ma Trésorerie.');
+  if (o.format !== EXPORT_FORMAT || !o.data) throw new Error('Ce fichier n’est pas une sauvegarde Solde.');
   const out = {} as DataState;
   for (const s of STORE_NAMES) {
     const arr = o.data[s];
